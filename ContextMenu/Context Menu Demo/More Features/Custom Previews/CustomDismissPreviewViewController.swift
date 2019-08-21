@@ -118,10 +118,10 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
 
         // Create a transform from the original icon to our preview
         let sourceRect = cellImageView.convert(cellImageView.bounds, to: view)
-        let transorm = CGAffineTransform.transformRect(from: preview.frame, toRect: sourceRect)
+        let transform = CGAffineTransform.transformRect(from: preview.frame, toRect: sourceRect)
 
         // Create a target with a center at the view center, and the transform for the animation
-        let target = UIPreviewTarget(container: view, center: view.center, transform: transorm)
+        let target = UIPreviewTarget(container: view, center: view.center, transform: transform)
 
         // Return the custom targeted preview
         return UITargetedPreview(view: preview, parameters: UIPreviewParameters(), target: target)
