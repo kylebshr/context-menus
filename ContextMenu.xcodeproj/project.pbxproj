@@ -12,9 +12,10 @@
 		2772A8BA230CA2140017442F /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8B9230CA2140017442F /* CatalogViewController.swift */; };
 		2772A8BF230CA2150017442F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2772A8BE230CA2150017442F /* Assets.xcassets */; };
 		2772A8C2230CA2150017442F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2772A8C0230CA2150017442F /* LaunchScreen.storyboard */; };
-		2772A8CF230CA3700017442F /* SingleViewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8CE230CA3700017442F /* SingleViewMenuViewController.swift */; };
+		2772A8CF230CA3700017442F /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8CE230CA3700017442F /* SingleViewController.swift */; };
 		2772A8D1230CA7970017442F /* ContextMenuDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8D0230CA7970017442F /* ContextMenuDemo.swift */; };
 		2772A8D3230CA8E60017442F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8D2230CA8E60017442F /* CollectionViewController.swift */; };
+		27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091F8230CE7D800C5B2FF /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +26,10 @@
 		2772A8BE230CA2150017442F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2772A8C1230CA2150017442F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2772A8C3230CA2150017442F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2772A8CE230CA3700017442F /* SingleViewMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewMenuViewController.swift; sourceTree = "<group>"; };
+		2772A8CE230CA3700017442F /* SingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		2772A8D0230CA7970017442F /* ContextMenuDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuDemo.swift; sourceTree = "<group>"; };
 		2772A8D2230CA8E60017442F /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		27D091F8230CE7D800C5B2FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +83,7 @@
 			children = (
 				2772A8D0230CA7970017442F /* ContextMenuDemo.swift */,
 				2772A8B9230CA2140017442F /* CatalogViewController.swift */,
-				2772A8CE230CA3700017442F /* SingleViewMenuViewController.swift */,
-				2772A8D2230CA8E60017442F /* CollectionViewController.swift */,
+				27D091FA230CEA4100C5B2FF /* Basic Menus */,
 			);
 			path = "Context Menu Demo";
 			sourceTree = "<group>";
@@ -95,6 +96,16 @@
 				2772A8C3230CA2150017442F /* Info.plist */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		27D091FA230CEA4100C5B2FF /* Basic Menus */ = {
+			isa = PBXGroup;
+			children = (
+				2772A8CE230CA3700017442F /* SingleViewController.swift */,
+				27D091F8230CE7D800C5B2FF /* TableViewController.swift */,
+				2772A8D2230CA8E60017442F /* CollectionViewController.swift */,
+			);
+			path = "Basic Menus";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,11 +179,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2772A8D3230CA8E60017442F /* CollectionViewController.swift in Sources */,
+				27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */,
 				2772A8D1230CA7970017442F /* ContextMenuDemo.swift in Sources */,
 				2772A8BA230CA2140017442F /* CatalogViewController.swift in Sources */,
 				2772A8B6230CA2140017442F /* AppDelegate.swift in Sources */,
 				2772A8B8230CA2140017442F /* SceneDelegate.swift in Sources */,
-				2772A8CF230CA3700017442F /* SingleViewMenuViewController.swift in Sources */,
+				2772A8CF230CA3700017442F /* SingleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

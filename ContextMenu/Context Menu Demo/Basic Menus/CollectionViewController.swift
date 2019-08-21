@@ -8,8 +8,13 @@
 
 import UIKit
 
-class CollectionViewController: UIViewController, ContextMenuDemo {
+class CollectionViewController: UICollectionViewController, ContextMenuDemo {
+
+    // MARK: ContextMenuDemo
+
     static var title: String { return "Collection View" }
+
+    // MARK: CollectionViewController
 
     private let identifier = "cell"
     private let colors: [UIColor] = {
@@ -24,10 +29,13 @@ class CollectionViewController: UIViewController, ContextMenuDemo {
         ].shuffled()
     }()
 
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: makeCollectionViewLayout())
+    init() {
+        super.init(collectionViewLayout: Self.makeCollectionViewLayout())
+    }
 
-    override func loadView() {
-        view = collectionView
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -41,7 +49,7 @@ class CollectionViewController: UIViewController, ContextMenuDemo {
         collectionView.delegate = self
     }
 
-    private func makeCollectionViewLayout() -> UICollectionViewLayout {
+    private static func makeCollectionViewLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / 3), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
@@ -54,23 +62,23 @@ class CollectionViewController: UIViewController, ContextMenuDemo {
 
         return UICollectionViewCompositionalLayout(section: section)
     }
-}
 
-extension CollectionViewController: UICollectionViewDelegate {
+    // MARK: - UICollectionViewDelegate
+
     // Here's where we set up the context menu interaction
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             return self.makeDefaultDemoMenu()
         }
     }
-}
 
-extension CollectionViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    // MARK: - UICollectionViewDataSource
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         cell.contentView.backgroundColor = colors[indexPath.row]
         cell.backgroundColor = colors[indexPath.row]

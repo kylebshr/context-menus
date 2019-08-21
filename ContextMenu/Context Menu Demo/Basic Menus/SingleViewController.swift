@@ -1,5 +1,5 @@
 //
-//  SingleViewViewController.swift
+//  SingleViewController.swift
 //  ContextMenu
 //
 //  Created by Kyle Bashour on 8/20/19.
@@ -8,8 +8,13 @@
 
 import UIKit
 
-class SingleViewMenuViewController: UIViewController, ContextMenuDemo {
+class SingleViewController: UIViewController, ContextMenuDemo {
+
+    // MARK: ContextMenuDemo
+
     static var title: String { return "Single View" }
+
+    // MARK: SingleViewController
 
     private let menuView = UIView()
 
@@ -42,7 +47,7 @@ class SingleViewMenuViewController: UIViewController, ContextMenuDemo {
     }
 }
 
-extension SingleViewMenuViewController: UIContextMenuInteractionDelegate {
+extension SingleViewController: UIContextMenuInteractionDelegate {
 
     /*********************************************************
 

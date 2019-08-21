@@ -14,9 +14,10 @@ class CatalogViewController: UITableViewController {
     typealias DemoViewController = ContextMenuDemo & UIViewController
 
     private let demos: [(title: String, viewControllers: [DemoViewController.Type])] = [
-        ("Simple Menus", [
-            SingleViewMenuViewController.self,
+        ("Basic Menus", [
+            SingleViewController.self,
             CollectionViewController.self,
+            TableViewController.self,
         ]),
         ("More Menu Features", [
             
