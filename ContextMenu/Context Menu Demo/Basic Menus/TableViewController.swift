@@ -18,32 +18,6 @@ class TableViewController: UITableViewController, ContextMenuDemo {
 
     private let identifier = "identifier"
 
-    private let lorem = [
-        "Lorem ipsum",
-        "dolor sit",
-        "amet consectetur",
-        "adipiscing elit",
-        "sed do",
-        "eiusmod tempor",
-        "incididunt ut",
-        "labore et",
-        "dolore magna",
-        "aliqua Ut",
-        "enim ad",
-        "minim veniam",
-        "quis nostrud",
-        "exercitation ullamco",
-        "laboris nisi",
-        "ut aliquip",
-        "ex ea",
-        "commodo consequat",
-        "Duis aute",
-        "irure dolor",
-        "in reprehenderit",
-        "in voluptate",
-        "velit esse",
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,12 +37,12 @@ class TableViewController: UITableViewController, ContextMenuDemo {
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lorem.count
+        return Fixtures.lorem.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = lorem[indexPath.row]
+        cell.textLabel?.text = Fixtures.lorem[indexPath.row]
         return cell
     }
 }

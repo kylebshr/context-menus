@@ -17,17 +17,6 @@ class CollectionViewController: UICollectionViewController, ContextMenuDemo {
     // MARK: CollectionViewController
 
     private let identifier = "cell"
-    private let colors: [UIColor] = {
-        return [
-            UIColor.systemRed, .systemRed, .systemRed,
-            .systemBlue, .systemBlue, .systemBlue,
-            .systemPink, .systemPink, .systemPink,
-            .systemGreen, .systemGreen, .systemGreen,
-            .systemPurple, .systemPurple, .systemPurple,
-            .systemTeal, .systemTeal, .systemTeal,
-            .systemOrange, .systemOrange, .systemOrange
-        ].shuffled()
-    }()
 
     init() {
         super.init(collectionViewLayout: Self.makeCollectionViewLayout())
@@ -75,13 +64,13 @@ class CollectionViewController: UICollectionViewController, ContextMenuDemo {
     // MARK: - UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
+        return Fixtures.colors.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-        cell.contentView.backgroundColor = colors[indexPath.row]
-        cell.backgroundColor = colors[indexPath.row]
+        cell.contentView.backgroundColor = Fixtures.colors[indexPath.row]
+        cell.backgroundColor = Fixtures.colors[indexPath.row]
         return cell
     }
 }

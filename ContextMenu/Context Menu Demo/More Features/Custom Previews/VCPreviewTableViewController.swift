@@ -29,41 +29,6 @@ class VCPreviewTableViewController: UITableViewController, ContextMenuDemo {
 
     private let identifier = "identifier"
 
-    private let icons = [
-        "cloud",
-        "cloud.bolt",
-        "cloud.bolt.fill",
-        "cloud.bolt.rain",
-        "cloud.bolt.rain.fill",
-        "cloud.drizzle",
-        "cloud.drizzle.fill",
-        "cloud.fill",
-        "cloud.fog",
-        "cloud.fog.fill",
-        "cloud.hail",
-        "cloud.hail.fill",
-        "cloud.heavyrain",
-        "cloud.heavyrain.fill",
-        "cloud.moon",
-        "cloud.moon.bolt",
-        "cloud.moon.bolt.fill",
-        "cloud.moon.fill",
-        "cloud.moon.rain",
-        "cloud.moon.rain.fill",
-        "cloud.rain",
-        "cloud.rain.fill",
-        "cloud.sleet",
-        "cloud.sleet.fill",
-        "cloud.snow",
-        "cloud.snow.fill",
-        "cloud.sun",
-        "cloud.sun.bolt",
-        "cloud.sun.bolt.fill",
-        "cloud.sun.fill",
-        "cloud.sun.rain",
-        "cloud.sun.rain.fill",
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,13 +39,13 @@ class VCPreviewTableViewController: UITableViewController, ContextMenuDemo {
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return icons.count
+        return Fixtures.cloudSymbols.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = icons[indexPath.row]
-        cell.imageView?.image = UIImage(systemName: icons[indexPath.row])
+        cell.textLabel?.text = Fixtures.cloudSymbols[indexPath.row]
+        cell.imageView?.image = UIImage(systemName: Fixtures.cloudSymbols[indexPath.row])
         cell.accessoryType = .disclosureIndicator
         return cell
     }

@@ -74,41 +74,6 @@ class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
 
     private let identifier = "identifier"
 
-    private let icons = [
-        "cloud",
-        "cloud.bolt",
-        "cloud.bolt.fill",
-        "cloud.bolt.rain",
-        "cloud.bolt.rain.fill",
-        "cloud.drizzle",
-        "cloud.drizzle.fill",
-        "cloud.fill",
-        "cloud.fog",
-        "cloud.fog.fill",
-        "cloud.hail",
-        "cloud.hail.fill",
-        "cloud.heavyrain",
-        "cloud.heavyrain.fill",
-        "cloud.moon",
-        "cloud.moon.bolt",
-        "cloud.moon.bolt.fill",
-        "cloud.moon.fill",
-        "cloud.moon.rain",
-        "cloud.moon.rain.fill",
-        "cloud.rain",
-        "cloud.rain.fill",
-        "cloud.sleet",
-        "cloud.sleet.fill",
-        "cloud.snow",
-        "cloud.snow.fill",
-        "cloud.sun",
-        "cloud.sun.bolt",
-        "cloud.sun.bolt.fill",
-        "cloud.sun.fill",
-        "cloud.sun.rain",
-        "cloud.sun.rain.fill",
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -119,13 +84,13 @@ class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return icons.count
+        return Fixtures.cloudSymbols.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = icons[indexPath.row]
-        cell.imageView?.image = UIImage(systemName: icons[indexPath.row])
+        cell.textLabel?.text = Fixtures.cloudSymbols[indexPath.row]
+        cell.imageView?.image = UIImage(systemName: Fixtures.cloudSymbols[indexPath.row])
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -150,7 +115,7 @@ class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 
         // We have to create an NSString since the identifier must conform to NSCopying
-        let identifier = NSString(string: icons[indexPath.row])
+        let identifier = NSString(string: Fixtures.cloudSymbols[indexPath.row])
 
         // Create our configuration with an indentifier
         return UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { suggestedActions in
@@ -164,7 +129,7 @@ class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
         guard let identifier = configuration.identifier as? String else { return nil }
 
         // Get the current index of the model
-        guard let row = icons.firstIndex(of: identifier) else { return nil }
+        guard let row = Fixtures.cloudSymbols.firstIndex(of: identifier) else { return nil }
 
         // Get the cell from the table view to contain our preview
         guard let cell = tableView.cellForRow(at: .init(row: row, section: 0)) else { return nil }
@@ -194,7 +159,7 @@ class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = IconPreviewViewController(systemImageName: icons[indexPath.row])
+        let viewController = IconPreviewViewController(systemImageName: Fixtures.cloudSymbols[indexPath.row])
         show(viewController, sender: self)
     }
 }
