@@ -22,18 +22,12 @@ private class PreviewView: UIView {
         imageView.image = UIImage(systemName: systemImageName)
         imageView.tintColor = .white
         imageView.contentMode = .center
+        imageView.frame = bounds
         addSubview(imageView)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        layer.cornerRadius = bounds.midY
-        imageView.frame = bounds
     }
 }
 
@@ -137,9 +131,9 @@ class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
         // Create a view for previewing
         let preview = PreviewView(systemImageName: identifier)
 
-        // Override the default white background by setting the background to clear
+        // Rather than rounding our preview view, we should specify custom shapes for our preview in the parameters
         let parameters = UIPreviewParameters()
-        parameters.backgroundColor = .clear
+        parameters.visiblePath = UIBezierPath(roundedRect: preview.frame, cornerRadius: preview.frame.midY)
 
         // Create a target with a center at the image view center
         let target = UIPreviewTarget(container: cell, center: cell.imageView?.center ?? .zero)
