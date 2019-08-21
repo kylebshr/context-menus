@@ -8,6 +8,12 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a table view. Long-pressing on a row will open a context menu for that item.
+
+ */
+
 class TableViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
@@ -27,6 +33,13 @@ class TableViewController: UITableViewController, ContextMenuDemo {
     }
 
     // MARK: - UITableViewDelegate
+
+    /*
+
+     In a table view, there's no need to register an interaction -
+     this delegate method is where you create and return a menu.
+
+     */
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in

@@ -8,6 +8,21 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a square that can open a menu, and the menu has a sub-menu shown inline with a separator.
+
+ ---------------------
+ | Share             |
+ ---------------------
+ ---------------------
+ | Rename            |
+ ---------------------
+ | Delete            |
+ ---------------------
+
+ */
+
 class InlineSubmenuViewController: UIViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
@@ -40,16 +55,16 @@ class InlineSubmenuViewController: UIViewController, ContextMenuDemo {
 
 extension InlineSubmenuViewController: UIContextMenuInteractionDelegate {
 
-    /*********************************************************
+    /*
 
      When we create our menu, we'll use the exact same items
      as the basic menu, but group "rename" and "delete" into
      a sub-menu titled "Edit..."
 
-     However, we can specify the inline option to show it at
-     the top level with a separator
+     We'll also specify the `displayInline` option to show it at
+     the top level with a separator.
 
-     *********************************************************/
+     */
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in

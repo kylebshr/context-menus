@@ -8,6 +8,15 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a list of icons with their names, and has a custom preview of the icon when
+ the menu is opened. The preview is a custom view, and has a custom shape applied instead of the default rounded rect.
+ When the preview is tapped, it pushes a view controller that displays the icon.
+
+ */
+
+
 /// A custom view for the menu preview
 private class PreviewView: UIView {
     private static let size = CGSize(width: 40, height: 40)
@@ -91,20 +100,21 @@ class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: - UITableViewDelegate
 
-    /*********************************************************
+    /*
 
      When creating our configuration, we'll specify an
-     identifier so that we can tell which index is being
-     previewed in `previewForHighlightingContextMenuWithConfiguration`
+     identifier so that we can tell which item is being
+     previewed in
+     `previewForHighlightingContextMenuWithConfiguration`.
 
      It's best not to pass the index path as your identifier,
      as the table view data could change while a menu is open.
      Passing the id of the model is a good idea.
 
-     We can also implement `willPerformPreviewActionForMenuWith`
+     We'll also implement `willPerformPreviewActionForMenuWith`
      to respond to the user tapping on the preview.
 
-     *********************************************************/
+     */
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 

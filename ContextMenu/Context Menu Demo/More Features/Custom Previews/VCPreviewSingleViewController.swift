@@ -8,6 +8,15 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a square that can open a menu, and uses a view controller for the menu preview.
+ When the preview is tapped, it pushes that view controller.
+
+ */
+
+
+/// A view controller used for previewing and when an item is selected
 private class PreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +48,14 @@ class VCPreviewSingleViewController: UIViewController, ContextMenuDemo {
         menuView.frame.size = .init(width: 100, height: 100)
         view.addSubview(menuView)
 
-        /*********************************************************
+        /*
 
          Here we create an interaction, give it a delegate, and
          add it to a view. This tells UIKit to call the delegate
          methods when the view is long-press or 3D touched, and
          display a menu if the delegate returns one.
 
-         *********************************************************/
+         */
 
         let interaction = UIContextMenuInteraction(delegate: self)
         menuView.addInteraction(interaction)
@@ -60,9 +69,9 @@ class VCPreviewSingleViewController: UIViewController, ContextMenuDemo {
 
 extension VCPreviewSingleViewController: UIContextMenuInteractionDelegate {
 
-    /*********************************************************
+    /*
 
-     The `previewProvider` argument just needs a function
+     The `previewProvider` argument needs a function
      that returns a view controller. You can do this with a
      closure, or pass in a method that creates the view controller
      (in this case, the preview view controller initializer).
@@ -70,7 +79,7 @@ extension VCPreviewSingleViewController: UIContextMenuInteractionDelegate {
      We can also implement `willPerformPreviewActionForMenuWith`
      to respond to the user tapping on the preview.
 
-     *********************************************************/
+     */
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: PreviewViewController.init) { suggestedActions in

@@ -8,6 +8,14 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a list of icons with their names, and uses a view controller for the menu preview.
+ When the preview is tapped, it pushes that view controller.
+
+ */
+
+/// A basic view controller used for previewing and when an item is selected
 private class PreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +60,7 @@ class VCPreviewTableViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: - UITableViewDelegate
 
-    /*********************************************************
+    /*
 
      The `previewProvider` argument just needs a function
      that returns a view controller. You can do this with a
@@ -62,7 +70,7 @@ class VCPreviewTableViewController: UITableViewController, ContextMenuDemo {
      We can also implement `willPerformPreviewActionForMenuWith`
      to respond to the user tapping on the preview.
 
-     *********************************************************/
+     */
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: PreviewViewController.init) { suggestedActions in

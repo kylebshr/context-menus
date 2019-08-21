@@ -8,6 +8,12 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a collection view. Long-pressing on an item will open a context menu for that item.
+
+ */
+
 class CollectionViewController: UICollectionViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
@@ -54,7 +60,13 @@ class CollectionViewController: UICollectionViewController, ContextMenuDemo {
 
     // MARK: - UICollectionViewDelegate
 
-    // Here's where we set up the context menu interaction
+    /*
+
+     In a collection view, there's no need to register an interaction -
+     this delegate method is where you create and return a menu.
+
+     */
+
     override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             return self.makeDefaultDemoMenu()

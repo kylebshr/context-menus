@@ -8,6 +8,14 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a list of icons with their names, and has a custom preview with the icon and
+ its name when the menu is opened. It animates the preview from from the image in the cell, and animates
+ back to the cell image when dismissing.
+
+ */
+
 /// A custom view for the menu preview
 private class PreviewView: UIView {
     private let imageView = UIImageView()
@@ -77,7 +85,7 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
 
     // MARK: - UITableViewDelegate
 
-    /*********************************************************
+    /*
 
      In this example, we use a transform to animate from our
      cell image to the center of the view when previewing.
@@ -86,7 +94,7 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
      `previewForDismissingContextMenuWithConfiguration`
      the preview will animate back to the image when dismissing.
 
-     *********************************************************/
+     */
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 
@@ -120,7 +128,8 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
         let sourceRect = cellImageView.convert(cellImageView.bounds, to: view)
         let transform = CGAffineTransform.transformRect(from: preview.frame, toRect: sourceRect)
 
-        // Create a target with a center at the view center, and the transform for the animation
+        // Create a target with a center at the view center, and the transform for the animation.
+        // The menu animation will animate the preview from this transform to its identity.
         let target = UIPreviewTarget(container: view, center: view.center, transform: transform)
 
         // Return the custom targeted preview
@@ -143,7 +152,7 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
     }
 }
 
-extension CGAffineTransform {
+private extension CGAffineTransform {
     static func transformRect(from source: CGRect, toRect destination: CGRect) -> CGAffineTransform {
         return CGAffineTransform.identity
             .translatedBy(x: destination.midX - source.midX, y: destination.midY - source.midY)

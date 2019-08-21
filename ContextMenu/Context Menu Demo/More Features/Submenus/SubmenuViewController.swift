@@ -8,6 +8,27 @@
 
 import UIKit
 
+/*
+
+ This view controller displays a square that can open a menu, and the menu has an "Edit" sub-menu. When "Edit" is tapped,
+ the submenu is opened and displays rename/delete options.
+
+ ---------------------
+ | Share             |
+ ---------------------
+ | Edit...           |
+ ---------------------
+
+ User taps edit, and the menu transforms:
+
+ ---------------------
+ | Rename            |
+ ---------------------
+ | Delete            |
+ ---------------------
+
+ */
+
 class SubmenuViewController: UIViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
@@ -40,13 +61,13 @@ class SubmenuViewController: UIViewController, ContextMenuDemo {
 
 extension SubmenuViewController: UIContextMenuInteractionDelegate {
 
-    /*********************************************************
+    /*
 
      When we create our menu, we'll use the exact same items
      as the basic menu, but group "rename" and "delete" into
      a sub-menu titled "Edit..."
 
-     *********************************************************/
+     */
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
