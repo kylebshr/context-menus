@@ -1,5 +1,5 @@
 //
-//  CustomPreviewTableViewController.swift
+//  TargetedPreviewTableViewController.swift
 //  ContextMenu
 //
 //  Created by Kyle Bashour on 8/20/19.
@@ -67,7 +67,7 @@ private class IconPreviewViewController: UIViewController {
     }
 }
 
-class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
+class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
 

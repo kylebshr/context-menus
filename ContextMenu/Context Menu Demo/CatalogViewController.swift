@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CatalogViewController.swift
 //  ContextMenu
 //
 //  Created by Kyle Bashour on 8/20/19.
@@ -27,7 +27,7 @@ class CatalogViewController: UITableViewController {
         ("Custom Previews", [
             VCPreviewSingleViewController.self,
             VCPreviewTableViewController.self,
-            TargetPreviewTableViewController.self,
+            TargetedPreviewTableViewController.self,
             CustomDismissPreviewViewController.self,
         ]),
     ]
