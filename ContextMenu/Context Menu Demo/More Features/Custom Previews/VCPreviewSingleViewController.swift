@@ -19,11 +19,11 @@ private class PreviewViewController: UIViewController {
     }
 }
 
-class CustomPreviewController: UIViewController, ContextMenuDemo {
+class VCPreviewSingleViewController: UIViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
 
-    static var title: String { return "UIViewController Preview" }
+    static var title: String { return "UIViewController (Single View)" }
 
     // MARK: CustomPreviewController
 
@@ -56,19 +56,16 @@ class CustomPreviewController: UIViewController, ContextMenuDemo {
         super.viewDidLayoutSubviews()
         menuView.center = view.center
     }
-
-    private func createPreviewViewController() -> UIViewController {
-        return PreviewViewController()
-    }
 }
 
-extension CustomPreviewController: UIContextMenuInteractionDelegate {
+extension VCPreviewSingleViewController: UIContextMenuInteractionDelegate {
 
     /*********************************************************
 
      The `previewProvider` argument just needs a function
      that returns a view controller. You can do this with a
-     closure, or pass in a method from your view controller.
+     closure, or pass in a method that creates the view controller
+     (in this case, the preview view controller initializer).
 
      We can also implement `willPerformPreviewActionForMenuWith`
      to respond to the user tapping on the preview.
@@ -76,7 +73,7 @@ extension CustomPreviewController: UIContextMenuInteractionDelegate {
      *********************************************************/
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: createPreviewViewController) { suggestedActions in
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: PreviewViewController.init) { suggestedActions in
             return self.makeDefaultDemoMenu()
         }
     }

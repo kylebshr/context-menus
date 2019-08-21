@@ -64,11 +64,11 @@ private class IconPreviewViewController: UIViewController {
     }
 }
 
-class CustomPreviewTableViewController: UITableViewController, ContextMenuDemo {
+class TargetPreviewTableViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
 
-    static var title: String { return "UITargetedPreview Preview" }
+    static var title: String { return "UITargetedPreview (Table View)" }
 
     // MARK: CustomPreviewTableViewController
 
@@ -111,6 +111,8 @@ class CustomPreviewTableViewController: UITableViewController, ContextMenuDemo {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.title = Self.title
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
     }
 
