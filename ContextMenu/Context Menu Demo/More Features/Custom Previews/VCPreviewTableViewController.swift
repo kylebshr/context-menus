@@ -79,8 +79,13 @@ class VCPreviewTableViewController: UITableViewController, ContextMenuDemo {
     }
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        let viewController = PreviewViewController()
-        show(viewController, sender: self)
+
+        // If we used a view controller for our preview, we can pull it out of the animator and show it once the commit animation is complete.
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

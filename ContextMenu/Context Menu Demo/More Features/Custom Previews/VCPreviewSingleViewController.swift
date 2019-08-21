@@ -88,7 +88,12 @@ extension VCPreviewSingleViewController: UIContextMenuInteractionDelegate {
     }
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        let viewController = PreviewViewController()
-        show(viewController, sender: self)
+
+        // If we used a view controller for our preview, we can pull it out of the animator and show it once the commit animation is complete.
+        animator.addCompletion {
+            if let viewController = animator.previewViewController {
+                self.show(viewController, sender: self)
+            }
+        }
     }
 }
