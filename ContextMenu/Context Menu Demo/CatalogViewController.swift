@@ -16,12 +16,18 @@ class CatalogViewController: UITableViewController {
     private let demos: [(title: String, viewControllers: [DemoViewController.Type])] = [
         ("Basic Menus", [
             SingleViewController.self,
-            CollectionViewController.self,
             TableViewController.self,
+            CollectionViewController.self,
         ]),
-        ("More Menu Features", [
-            
-        ])
+        ("Submenus", [
+            SubmenuViewController.self,
+            InlineSubmenuViewController.self,
+        ]),
+
+        ("Custom Previews", [
+            CustomPreviewController.self,
+            CustomPreviewTableViewController.self,
+        ]),
     ]
 
     override init(style: UITableView.Style) {

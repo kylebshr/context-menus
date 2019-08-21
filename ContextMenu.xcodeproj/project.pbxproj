@@ -15,7 +15,12 @@
 		2772A8CF230CA3700017442F /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8CE230CA3700017442F /* SingleViewController.swift */; };
 		2772A8D1230CA7970017442F /* ContextMenuDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8D0230CA7970017442F /* ContextMenuDemo.swift */; };
 		2772A8D3230CA8E60017442F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8D2230CA8E60017442F /* CollectionViewController.swift */; };
+		27C8E10A230CEEF30047E4EB /* IndexPath+NSIndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */; };
+		27C8E10C230CF4550047E4EB /* CustomPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8E10B230CF4550047E4EB /* CustomPreviewController.swift */; };
 		27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091F8230CE7D800C5B2FF /* TableViewController.swift */; };
+		27D091FD230CEAC100C5B2FF /* SubmenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091FC230CEAC100C5B2FF /* SubmenuViewController.swift */; };
+		27D091FF230CEB9600C5B2FF /* InlineSubmenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091FE230CEB9600C5B2FF /* InlineSubmenuViewController.swift */; };
+		27D09201230CEC5D00C5B2FF /* CustomPreviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D09200230CEC5D00C5B2FF /* CustomPreviewTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +34,12 @@
 		2772A8CE230CA3700017442F /* SingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		2772A8D0230CA7970017442F /* ContextMenuDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuDemo.swift; sourceTree = "<group>"; };
 		2772A8D2230CA8E60017442F /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+NSIndexPath.swift"; sourceTree = "<group>"; };
+		27C8E10B230CF4550047E4EB /* CustomPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPreviewController.swift; sourceTree = "<group>"; };
 		27D091F8230CE7D800C5B2FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		27D091FC230CEAC100C5B2FF /* SubmenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmenuViewController.swift; sourceTree = "<group>"; };
+		27D091FE230CEB9600C5B2FF /* InlineSubmenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineSubmenuViewController.swift; sourceTree = "<group>"; };
+		27D09200230CEC5D00C5B2FF /* CustomPreviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPreviewTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +74,7 @@
 			children = (
 				2772A8C9230CA2DA0017442F /* Application */,
 				2772A8CA230CA2E40017442F /* Context Menu Demo */,
+				27C8E108230CEEE10047E4EB /* Utilities */,
 				2772A8CB230CA2EF0017442F /* Assets */,
 			);
 			path = ContextMenu;
@@ -84,6 +95,7 @@
 				2772A8D0230CA7970017442F /* ContextMenuDemo.swift */,
 				2772A8B9230CA2140017442F /* CatalogViewController.swift */,
 				27D091FA230CEA4100C5B2FF /* Basic Menus */,
+				27D091FB230CEAA000C5B2FF /* More Features */,
 			);
 			path = "Context Menu Demo";
 			sourceTree = "<group>";
@@ -98,6 +110,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		27C8E108230CEEE10047E4EB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		27D091FA230CEA4100C5B2FF /* Basic Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +126,33 @@
 				2772A8D2230CA8E60017442F /* CollectionViewController.swift */,
 			);
 			path = "Basic Menus";
+			sourceTree = "<group>";
+		};
+		27D091FB230CEAA000C5B2FF /* More Features */ = {
+			isa = PBXGroup;
+			children = (
+				27D09202230CEC6600C5B2FF /* Submenus */,
+				27D09203230CEC8700C5B2FF /* Custom Previews */,
+			);
+			path = "More Features";
+			sourceTree = "<group>";
+		};
+		27D09202230CEC6600C5B2FF /* Submenus */ = {
+			isa = PBXGroup;
+			children = (
+				27D091FC230CEAC100C5B2FF /* SubmenuViewController.swift */,
+				27D091FE230CEB9600C5B2FF /* InlineSubmenuViewController.swift */,
+			);
+			path = Submenus;
+			sourceTree = "<group>";
+		};
+		27D09203230CEC8700C5B2FF /* Custom Previews */ = {
+			isa = PBXGroup;
+			children = (
+				27C8E10B230CF4550047E4EB /* CustomPreviewController.swift */,
+				27D09200230CEC5D00C5B2FF /* CustomPreviewTableViewController.swift */,
+			);
+			path = "Custom Previews";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,9 +226,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2772A8D3230CA8E60017442F /* CollectionViewController.swift in Sources */,
+				27C8E10C230CF4550047E4EB /* CustomPreviewController.swift in Sources */,
+				27D09201230CEC5D00C5B2FF /* CustomPreviewTableViewController.swift in Sources */,
 				27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */,
 				2772A8D1230CA7970017442F /* ContextMenuDemo.swift in Sources */,
 				2772A8BA230CA2140017442F /* CatalogViewController.swift in Sources */,
+				27D091FD230CEAC100C5B2FF /* SubmenuViewController.swift in Sources */,
+				27D091FF230CEB9600C5B2FF /* InlineSubmenuViewController.swift in Sources */,
+				27C8E10A230CEEF30047E4EB /* IndexPath+NSIndexPath.swift in Sources */,
 				2772A8B6230CA2140017442F /* AppDelegate.swift in Sources */,
 				2772A8B8230CA2140017442F /* SceneDelegate.swift in Sources */,
 				2772A8CF230CA3700017442F /* SingleViewController.swift in Sources */,
