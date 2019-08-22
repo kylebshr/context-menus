@@ -20,9 +20,9 @@ extension ContextMenuDemo {
             // Show system share sheet
         }
 
-        // Action for renaming
+        // Create an action for renaming
         let rename = UIAction(title: "Rename", image: UIImage(systemName: "square.and.pencil")) { action in
-            // Perform edit
+            // Perform renaming
         }
 
         // Here we specify the "destructive" attribute to show that it’s destructive in nature
