@@ -66,6 +66,14 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
 
     private let identifier = "identifier"
 
+    /// Since our view is a table view, `view.center` (relative to the frame) isn't always the center of the view.
+    /// Another solution would be to use the app window as the container, but that seems more fragile.
+    private var currentTableViewCenter: CGPoint {
+        var center = tableView.center
+        center.y += tableView.contentOffset.y
+        return center
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -127,7 +135,7 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
         let preview = PreviewView(systemImageName: identifier)
 
         // Set the position of the preview to the final position so we can compute a transform from the icon
-        preview.center = view.center
+        preview.center = currentTableViewCenter
 
         // Create a transform from the original icon to our preview
         let sourceRect = cellImageView.convert(cellImageView.bounds, to: view)
@@ -135,7 +143,7 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
 
         // Create a target with a center at the view center, and the transform for the animation.
         // The menu animation will animate the preview from this transform to its identity.
-        let target = UIPreviewTarget(container: view, center: view.center, transform: transform)
+        let target = UIPreviewTarget(container: view, center: currentTableViewCenter, transform: transform)
 
         // Return the custom targeted preview
         return UITargetedPreview(view: preview, parameters: UIPreviewParameters(), target: target)
