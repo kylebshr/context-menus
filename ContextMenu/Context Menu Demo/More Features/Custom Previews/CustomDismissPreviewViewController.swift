@@ -11,8 +11,8 @@ import UIKit
 /*
 
  This view controller displays a list of icons with their names, and has a custom preview with the icon and
- its name when the menu is opened. It animates the preview from from the image in the cell, and animates
- back to the cell image when dismissing.
+ its name when the menu is opened. It animates the preview in from from the cell image to the center of the view,
+ and animates back to the cell image when dismissing.
 
  */
 

@@ -23,7 +23,7 @@
 		27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091F8230CE7D800C5B2FF /* TableViewController.swift */; };
 		27D091FD230CEAC100C5B2FF /* SubmenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091FC230CEAC100C5B2FF /* SubmenuViewController.swift */; };
 		27D091FF230CEB9600C5B2FF /* InlineSubmenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091FE230CEB9600C5B2FF /* InlineSubmenuViewController.swift */; };
-		27D09201230CEC5D00C5B2FF /* ViewPreviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D09200230CEC5D00C5B2FF /* ViewPreviewTableViewController.swift */; };
+		27D09201230CEC5D00C5B2FF /* TargetedPreviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D09200230CEC5D00C5B2FF /* TargetedPreviewTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		27D091F8230CE7D800C5B2FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		27D091FC230CEAC100C5B2FF /* SubmenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmenuViewController.swift; sourceTree = "<group>"; };
 		27D091FE230CEB9600C5B2FF /* InlineSubmenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineSubmenuViewController.swift; sourceTree = "<group>"; };
-		27D09200230CEC5D00C5B2FF /* ViewPreviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPreviewTableViewController.swift; sourceTree = "<group>"; };
+		27D09200230CEC5D00C5B2FF /* TargetedPreviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetedPreviewTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +158,7 @@
 			children = (
 				27C8E10B230CF4550047E4EB /* VCPreviewSingleViewController.swift */,
 				2773BA32230DB99300D08658 /* VCPreviewTableViewController.swift */,
-				27D09200230CEC5D00C5B2FF /* ViewPreviewTableViewController.swift */,
+				27D09200230CEC5D00C5B2FF /* TargetedPreviewTableViewController.swift */,
 				2773BA36230DBC2E00D08658 /* CustomDismissPreviewViewController.swift */,
 			);
 			path = "Custom Previews";
@@ -236,7 +236,7 @@
 			files = (
 				2772A8D3230CA8E60017442F /* CollectionViewController.swift in Sources */,
 				27C8E10C230CF4550047E4EB /* VCPreviewSingleViewController.swift in Sources */,
-				27D09201230CEC5D00C5B2FF /* ViewPreviewTableViewController.swift in Sources */,
+				27D09201230CEC5D00C5B2FF /* TargetedPreviewTableViewController.swift in Sources */,
 				27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */,
 				2772A8D1230CA7970017442F /* ContextMenuDemo.swift in Sources */,
 				2773BA35230DBB2B00D08658 /* Fixtures.swift in Sources */,

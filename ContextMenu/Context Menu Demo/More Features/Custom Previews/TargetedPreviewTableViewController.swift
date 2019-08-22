@@ -42,28 +42,39 @@ private class PreviewView: UIView {
 
 /// A view controller that previews a single icon
 private class IconPreviewViewController: UIViewController {
+    private let imageView = UIImageView()
+    private let label = UILabel()
 
-    private let previewView: PreviewView
+    private lazy var stackView = UIStackView(arrangedSubviews: [imageView, label])
 
     init(systemImageName: String) {
-        previewView = PreviewView(systemImageName: systemImageName)
         super.init(nibName: nil, bundle: nil)
+
+        view.backgroundColor = .secondarySystemBackground
+
+        imageView.image = UIImage(systemName: systemImageName)
+        imageView.tintColor = .systemBlue
+        imageView.contentMode = .scaleAspectFit
+
+        label.text = systemImageName
+        label.textColor = .secondaryLabel
+
+        stackView.spacing = 8
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 80),
+            imageView.heightAnchor.constraint(equalToConstant: 80),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.backgroundColor = .systemBackground
-        view.addSubview(previewView)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        previewView.center = view.center
     }
 }
 
