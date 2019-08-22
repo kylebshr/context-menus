@@ -163,6 +163,12 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
         // Return a target of the cell image view
         return UITargetedPreview(view: cellImageView)
     }
+
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+
+        // Since we're not showing a view controller when the preview is tapped, we should set the animator commit style to "dismiss" instead of "pop"
+        animator.preferredCommitStyle = .dismiss
+    }
 }
 
 private extension CGAffineTransform {
