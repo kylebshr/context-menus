@@ -10,8 +10,9 @@ import UIKit
 
 /*
 
- This view controller displays a square that can open a menu, and the menu has an "Edit" sub-menu. When "Edit" is tapped,
- the submenu is opened and displays rename/delete options.
+ This view controller displays a square that can open a menu, and the menu has an "Edit" submenu. When "Edit" is tapped,
+ the submenu is opened and displays rename/delete options. "Delete" is itself a submenu, allowing the user to confirm
+ (always a good idea for destructive actions).
 
  ---------------------
  | Share             |
@@ -23,6 +24,14 @@ import UIKit
 
  ---------------------
  | Rename            |
+ ---------------------
+ | Delete            |
+ ---------------------
+
+ User taps delete, and the menu transforms again:
+
+ ---------------------
+ | Cancel            |
  ---------------------
  | Delete            |
  ---------------------
@@ -65,7 +74,7 @@ extension SubmenuViewController: UIContextMenuInteractionDelegate {
 
      When we create our menu, we'll use the exact same items
      as the basic menu, but group "rename" and "delete" into
-     a sub-menu titled "Edit..."
+     a submenu titled "Edit..."
 
      */
 
@@ -74,12 +83,17 @@ extension SubmenuViewController: UIContextMenuInteractionDelegate {
 
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in }
             let rename = UIAction(title: "Rename", image: UIImage(systemName: "square.and.pencil")) { action in }
-            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in }
 
-            // The edit sub-menu is created like the top-level menu...
+            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
+            let deleteConfirmation = UIAction(title: "Delete", image: UIImage(systemName: "checkmark"), attributes: .destructive) { action in }
+
+            // The delete sub-menu is created like the top-level menu, but we also specify an image and options
+            let delete = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+
+            // The edit menu adds delete as a child, just like an action...
             let edit = UIMenu(title: "Edit...", children: [rename, delete])
 
-            // ...then we add it as a child as if it were an action.
+            // ...then we add edit as a child of the main menu.
             return UIMenu(title: "", children: [share, edit])
         }
     }
