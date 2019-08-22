@@ -26,19 +26,24 @@ private class PreviewView: UIView {
     init(systemImageName: String) {
         super.init(frame: .zero)
 
-        backgroundColor = .systemBlue
+        backgroundColor = .secondarySystemBackground
 
         imageView.image = UIImage(systemName: systemImageName)
-        imageView.tintColor = .white
-        imageView.contentMode = .center
+        imageView.tintColor = .systemBlue
+        imageView.contentMode = .scaleAspectFit
+
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 80),
+            imageView.heightAnchor.constraint(equalToConstant: 80),
+        ])
 
         label.text = systemImageName
-        label.textColor = .white
+        label.textColor = .secondaryLabel
 
-        stackView.spacing = 4
+        stackView.spacing = 8
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.layoutMargins = .init(top: 8, left: 8, bottom: 8, right: 8)
+        stackView.layoutMargins = .init(top: 8, left: 16, bottom: 8, right: 16)
         stackView.isLayoutMarginsRelativeArrangement = true
         addSubview(stackView)
 
