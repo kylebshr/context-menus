@@ -18,13 +18,32 @@ import UIKit
 
 /// A view controller used for previewing and when an item is selected
 private class PreviewViewController: UIViewController {
+    private let imageView = UIImageView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGreen
+
+        let mountains = UIImage(named: "mountains")!
+
+        imageView.image = mountains
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+
+        NSLayoutConstraint.activate([
+            imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
 
         // The preview will size to the preferredContentSize, which can be useful
         // for displaying a preview with the dimension of an image, for example.
-        preferredContentSize = CGSize(width: 300, height: 200)
+        // Unlike peek and pop, it doesn't automatically scale down for you.
+        let width = view.bounds.width
+        let height = mountains.size.height * (width / mountains.size.width)
+        preferredContentSize = CGSize(width: width, height: height)
     }
 }
 
