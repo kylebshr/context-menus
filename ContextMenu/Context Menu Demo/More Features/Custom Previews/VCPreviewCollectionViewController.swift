@@ -16,10 +16,9 @@ import UIKit
  */
 
 /// A view controller used for previewing and when an item is selected
-private class PreviewViewController: UIViewController {
+private class PhotoPreviewViewController: UIViewController {
     private let imageName: String
     private let imageView = UIImageView()
-
 
     init(imageName: String) {
         self.imageName = imageName
@@ -51,10 +50,10 @@ private class PreviewViewController: UIViewController {
         let height: CGFloat
 
         if image.size.width > image.size.height {
-            width = view.frame.height
+            width = view.frame.width
             height = image.size.height * (width / image.size.width)
         } else {
-            height = view.frame.width
+            height = view.frame.height
             width = image.size.width * (height / image.size.height)
         }
 
@@ -62,6 +61,41 @@ private class PreviewViewController: UIViewController {
     }
 }
 
+/// Displays the name of the image
+private class PhotoDetailViewController: UIViewController {
+    private let imageName: String
+    private let imageNameLabel = UILabel()
+
+    init(imageName: String) {
+        self.imageName = imageName
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navigationItem.title = imageName.capitalized
+        view.backgroundColor = .secondarySystemBackground
+
+        imageNameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        imageNameLabel.textColor = .label
+        imageNameLabel.textAlignment = .center
+        imageNameLabel.text = imageName.capitalized
+        imageNameLabel.sizeToFit()
+        view.addSubview(imageNameLabel)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        imageNameLabel.center = view.center
+    }
+}
+
+/// A collection view cell that displays an image
 private class PhotoCell: UICollectionViewCell {
     private let imageView = UIImageView()
 
@@ -136,24 +170,32 @@ class VCPreviewCollectionViewController: UICollectionViewController, ContextMenu
      that returns a view controller. Here we configure a
      preview with the image at the items index.
 
-     We can also implement `willPerformPreviewActionForMenuWith`
-     to respond to the user tapping on the preview.
+     When creating our configuration, we'll specify an
+     identifier so that we can tell which item is being
+     previewed in `willPerformPreviewActionForMenuWith`.
+     Then we can push a different detail view for that item.
 
      */
 
     override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: {
-            return PreviewViewController(imageName: Fixtures.images[indexPath.row])
+
+        // We have to create an NSString since the identifier must conform to NSCopying
+        let identifier = NSString(string: Fixtures.images[indexPath.row])
+
+        // Create our configuration with an indentifier
+        return UIContextMenuConfiguration(identifier: identifier, previewProvider: {
+            return PhotoPreviewViewController(imageName: Fixtures.images[indexPath.row])
         }, actionProvider: { suggestedActions in
             return self.makeDefaultDemoMenu()
         })
     }
 
     override func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-
-        // If we used a view controller for our preview, we can pull it out of the animator and show it once the commit animation is complete.
         animator.addCompletion {
-            if let viewController = animator.previewViewController {
+
+            // We should have our image name set as the identifier of the configuration
+            if let identifier = configuration.identifier as? String {
+                let viewController = PhotoDetailViewController(imageName: identifier)
                 self.show(viewController, sender: self)
             }
         }

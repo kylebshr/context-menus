@@ -17,12 +17,13 @@ import UIKit
 
 
 /// A view controller used for previewing and when an item is selected
-private class PreviewViewController: UIViewController {
+private class MountainsPreviewViewController: UIViewController {
     private let imageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Mountains"
         let mountains = UIImage(named: "mountains")!
 
         imageView.image = mountains
@@ -105,7 +106,7 @@ extension VCPreviewSingleViewController: UIContextMenuInteractionDelegate {
      */
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: PreviewViewController.init) { suggestedActions in
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: MountainsPreviewViewController.init) { suggestedActions in
             return self.makeDefaultDemoMenu()
         }
     }
