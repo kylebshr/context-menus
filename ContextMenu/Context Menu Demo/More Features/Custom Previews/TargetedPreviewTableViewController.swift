@@ -156,12 +156,16 @@ class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
 
-        // Ensure we can get the expected identifier and create an image
-        guard let identifier = configuration.identifier as? String else { return }
+        animator.addCompletion {
 
-        // Create and push the appropiate view controller
-        let viewController = IconPreviewViewController(systemImageName: identifier)
-        show(viewController, sender: self)
+            // Ensure we can get the expected identifier and create an image
+            guard let identifier = configuration.identifier as? String else { return }
+
+            // Create and push the appropiate view controller
+            let viewController = IconPreviewViewController(systemImageName: identifier)
+            self.show(viewController, sender: self)
+
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
