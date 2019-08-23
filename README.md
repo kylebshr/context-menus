@@ -1,2 +1,6 @@
-# context-menus
-UIContextMenu demo of all the things!
+# iOS 13 Context Menu Demo
+
+Demo app for iOS context menus, including menu configuration and advanced preview options. Check out the blog post: [https://kylebashour.com/posts/context-menu-guide](https://kylebashour.com/posts/context-menu-guide).
+
+|-|-|-|-|-|
+| ![](images/collection.png) | ![](images/nesting.png) | ![](images/photo.png) | ![](images/targeted-1.png) | ![](images/targeted-2.png) |
