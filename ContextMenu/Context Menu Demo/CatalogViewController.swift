@@ -26,7 +26,7 @@ class CatalogViewController: UITableViewController {
 
         ("Custom Previews", [
             VCPreviewSingleViewController.self,
-            VCPreviewTableViewController.self,
+            VCPreviewCollectionViewController.self,
             TargetedPreviewTableViewController.self,
             CustomDismissPreviewViewController.self,
         ]),

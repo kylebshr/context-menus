@@ -72,7 +72,7 @@ enum Fixtures {
 
     static let colors: [UIColor] = {
         return [
-            UIColor.systemRed, .systemRed, .systemRed,
+            .systemRed, .systemRed, .systemRed,
             .systemBlue, .systemBlue, .systemBlue,
             .systemPink, .systemPink, .systemPink,
             .systemGreen, .systemGreen, .systemGreen,
@@ -81,4 +81,35 @@ enum Fixtures {
             .systemOrange, .systemOrange, .systemOrange
         ].shuffled()
     }()
+
+    static let images = [
+        "bridge",
+        "flowers",
+        "mountains",
+        "rock",
+        "skis",
+        "street",
+        "sunset",
+        "bridge",
+        "flowers",
+        "mountains",
+        "rock",
+        "skis",
+        "street",
+        "sunset",
+        "bridge",
+        "flowers",
+        "mountains",
+        "rock",
+        "skis",
+        "street",
+        "sunset",
+        "bridge",
+        "flowers",
+        "mountains",
+        "rock",
+        "skis",
+        "street",
+        "sunset",
+    ]
 }
