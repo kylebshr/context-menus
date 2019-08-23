@@ -41,6 +41,7 @@ private class PreviewViewController: UIViewController {
         // The preview will size to the preferredContentSize, which can be useful
         // for displaying a preview with the dimension of an image, for example.
         // Unlike peek and pop, it doesn't automatically scale down for you.
+
         let width = view.bounds.width
         let height = mountains.size.height * (width / mountains.size.width)
         preferredContentSize = CGSize(width: width, height: height)

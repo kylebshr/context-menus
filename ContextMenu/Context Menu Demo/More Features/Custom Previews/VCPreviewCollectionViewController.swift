@@ -132,8 +132,12 @@ class VCPreviewCollectionViewController: UICollectionViewController, ContextMenu
 
     /*
 
-     In a collection view, there's no need to register an interaction -
-     this delegate method is where you create and return a menu.
+     The `previewProvider` argument needs a function
+     that returns a view controller. Here we configure a
+     preview with the image at the items index.
+
+     We can also implement `willPerformPreviewActionForMenuWith`
+     to respond to the user tapping on the preview.
 
      */
 
