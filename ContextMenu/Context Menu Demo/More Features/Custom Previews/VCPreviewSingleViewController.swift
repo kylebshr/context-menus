@@ -56,7 +56,7 @@ class VCPreviewSingleViewController: UIViewController, ContextMenuDemo {
 
     // MARK: CustomPreviewController
 
-    private let menuView = UIView()
+    private let photoView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,9 +64,12 @@ class VCPreviewSingleViewController: UIViewController, ContextMenuDemo {
         navigationItem.title = Self.title
         view.backgroundColor = .systemBackground
 
-        menuView.backgroundColor = .systemBlue
-        menuView.frame.size = .init(width: 100, height: 100)
-        view.addSubview(menuView)
+        photoView.image = UIImage(named: "mountains")
+        photoView.contentMode = .scaleAspectFill
+        photoView.clipsToBounds = true
+        photoView.isUserInteractionEnabled = true
+        photoView.frame.size = .init(width: 100, height: 100)
+        view.addSubview(photoView)
 
         /*
 
@@ -78,12 +81,12 @@ class VCPreviewSingleViewController: UIViewController, ContextMenuDemo {
          */
 
         let interaction = UIContextMenuInteraction(delegate: self)
-        menuView.addInteraction(interaction)
+        photoView.addInteraction(interaction)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        menuView.center = view.center
+        photoView.center = view.center
     }
 }
 
