@@ -43,33 +43,24 @@ private class PreviewView: UIView {
 /// A view controller that previews a single icon
 private class IconPreviewViewController: UIViewController {
     private let imageView = UIImageView()
-    private let label = UILabel()
-
-    private lazy var stackView = UIStackView(arrangedSubviews: [imageView, label])
 
     init(systemImageName: String) {
         super.init(nibName: nil, bundle: nil)
 
         view.backgroundColor = .secondarySystemBackground
+        navigationItem.title = systemImageName
 
         imageView.image = UIImage(systemName: systemImageName)
         imageView.tintColor = .systemBlue
         imageView.contentMode = .scaleAspectFit
-
-        label.text = systemImageName
-        label.textColor = .secondaryLabel
-
-        stackView.spacing = 8
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
 
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 80),
             imageView.heightAnchor.constraint(equalToConstant: 80),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
 
