@@ -17,30 +17,63 @@ import UIKit
  */
 
 
-/// A custom view for the menu preview
-private class PreviewView: UIView {
-    private static let size = CGSize(width: 40, height: 40)
+/// A UITableViewCell for displaying an SF Symbol and its name
+private class IconPreviewCell: UITableViewCell {
+    let previewView = UIView()
 
-    private let imageView = UIImageView()
+    private let iconView = UIImageView()
+    private let label = UILabel()
 
-    init(systemImageName: String) {
-        super.init(frame: .init(origin: .zero, size: Self.size))
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        backgroundColor = .systemBlue
+        iconView.tintColor = .white
+        iconView.contentMode = .center
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        previewView.addSubview(iconView)
 
-        imageView.image = UIImage(systemName: systemImageName)
-        imageView.tintColor = .white
-        imageView.contentMode = .center
-        imageView.frame = bounds
-        addSubview(imageView)
+        previewView.tintColor = .white
+        previewView.layer.cornerRadius = 20
+        previewView.backgroundColor = .systemBlue
+        previewView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(previewView)
+
+        label.textColor = .label
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(label)
+
+        // Fix for a long-standing issue with cells breaking constraints
+        let bottomAnchor = contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: previewView.bottomAnchor, multiplier: 1)
+        bottomAnchor.priority = .required - 1
+
+        NSLayoutConstraint.activate([
+            iconView.centerXAnchor.constraint(equalTo: previewView.centerXAnchor),
+            iconView.centerYAnchor.constraint(equalTo: previewView.centerYAnchor),
+
+            previewView.heightAnchor.constraint(equalToConstant: 40),
+            previewView.widthAnchor.constraint(equalToConstant: 40),
+            previewView.topAnchor.constraint(equalToSystemSpacingBelow: contentView.topAnchor, multiplier: 1),
+            previewView.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
+            bottomAnchor,
+
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            label.leadingAnchor.constraint(equalToSystemSpacingAfter: previewView.trailingAnchor, multiplier: 1),
+            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: label.trailingAnchor, multiplier: 1),
+        ])
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func display(systemImageName: String) {
+        label.text = systemImageName
+        iconView.image = UIImage(systemName: systemImageName)
+    }
 }
 
-/// A view controller that previews a single icon
+/// A view controller for displaying a single icon
 private class IconPreviewViewController: UIViewController {
     private let imageView = UIImageView()
 
@@ -83,7 +116,25 @@ class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo
         super.viewDidLoad()
 
         navigationItem.title = Self.title
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
+        tableView.register(IconPreviewCell.self, forCellReuseIdentifier: identifier)
+    }
+
+    // Since we need to create the same preview for highlighting and dismissing, we'll put it in a utility method
+    private func makeTargetedPreview(for identifier: String) -> UITargetedPreview? {
+
+        // Get the current index of the identifier
+        guard let row = Fixtures.cloudSymbols.firstIndex(of: identifier) else { return nil }
+
+        // Get the cell for the index of the model
+        guard let cell = tableView.cellForRow(at: .init(row: row, section: 0)) as? IconPreviewCell else { return nil }
+
+        // Since our preview has its own shape (a circle) we need to set the preview parameters
+        // backgroundColor to clear, or we'll see a white rect behind it.
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        // Return a targeted preview using our cell previewView and parameters
+        return UITargetedPreview(view: cell.previewView, parameters: parameters)
     }
 
     // MARK: - UITableViewDataSource
@@ -93,9 +144,8 @@ class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = Fixtures.cloudSymbols[indexPath.row]
-        cell.imageView?.image = UIImage(systemName: Fixtures.cloudSymbols[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! IconPreviewCell
+        cell.display(systemImageName: Fixtures.cloudSymbols[indexPath.row])
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -106,8 +156,8 @@ class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo
 
      When creating our configuration, we'll specify an
      identifier so that we can tell which item is being
-     previewed in
-     `previewForHighlightingContextMenuWithConfiguration`.
+     previewed in `previewForHighlightingContextMenuWithConfiguration`
+     & `previewForDismissingContextMenuWithConfiguration`.
 
      It's best not to pass the index path as your identifier,
      as the table view data could change while a menu is open.
@@ -134,24 +184,17 @@ class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo
         // Ensure we can get the expected identifier
         guard let identifier = configuration.identifier as? String else { return nil }
 
-        // Get the current index of the model
-        guard let row = Fixtures.cloudSymbols.firstIndex(of: identifier) else { return nil }
+        // Make and return the preview for that identifier
+        return makeTargetedPreview(for: identifier)
+    }
 
-        // Get the cell from the table view to contain our preview
-        guard let cell = tableView.cellForRow(at: .init(row: row, section: 0)) else { return nil }
+    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-        // Create a view for previewing
-        let preview = PreviewView(systemImageName: identifier)
+        // Ensure we can get the expected identifier
+        guard let identifier = configuration.identifier as? String else { return nil }
 
-        // Rather than rounding our preview view, we should specify custom shapes for our preview in the parameters
-        let parameters = UIPreviewParameters()
-        parameters.visiblePath = UIBezierPath(roundedRect: preview.frame, cornerRadius: preview.frame.midY)
-
-        // Create a target with a center at the image view center
-        let target = UIPreviewTarget(container: cell, center: cell.imageView?.center ?? .zero)
-
-        // Return the custom targeted preview
-        return UITargetedPreview(view: preview, parameters: parameters, target: target)
+        // Make and return the preview for that identifier
+        return makeTargetedPreview(for: identifier)
     }
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
@@ -164,7 +207,6 @@ class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo
             // Create and push the appropiate view controller
             let viewController = IconPreviewViewController(systemImageName: identifier)
             self.show(viewController, sender: self)
-
         }
     }
 
