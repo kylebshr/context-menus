@@ -1,5 +1,5 @@
 //
-//  CustomDismissPreviewViewController.swift
+//  CustomTargetedPreviewViewController.swift
 //  ContextMenu
 //
 //  Created by Kyle Bashour on 8/20/19.

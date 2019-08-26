@@ -1,5 +1,5 @@
 //
-//  TargetedPreviewTableViewController.swift
+//  TargetedPreviewViewController.swift
 //  ContextMenu
 //
 //  Created by Kyle Bashour on 8/20/19.
