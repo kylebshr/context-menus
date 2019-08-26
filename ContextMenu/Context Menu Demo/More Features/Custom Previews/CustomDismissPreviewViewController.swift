@@ -60,7 +60,7 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
 
     // MARK: ContextMenuDemo
 
-    static var title: String { return "UITargetedPreview Custom Dismiss" }
+    static var title: String { return "UITargetedPreview (Custom Preview)" }
 
     // MARK: CustomPreviewTableViewController
 
@@ -100,12 +100,13 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
 
     /*
 
-     In this example, we use a transform to animate from our
-     cell image to the center of the view when previewing.
+     In this example, we'll create a preview view separate
+     from the views already in our cell. We'll apply a custom
+     shape and transform in our parameters so that it animates
+     from our cell nicely.
 
-     By also implementing
-     `previewForDismissingContextMenuWithConfiguration`
-     the preview will animate back to the image when dismissing.
+     In this case, I think it looks best to have our dismiss
+     preview be the cell icon preview itself.
 
      */
 
@@ -134,19 +135,25 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
         // Create a view for previewing
         let preview = PreviewView(systemImageName: identifier)
 
-        // Set the position of the preview to the final position so we can compute a transform from the icon
-        preview.center = currentTableViewCenter
+        // Create a transform for our preview, so it scales from the size of the image view
+        let transform = CGAffineTransform(scaleX: cellImageView.bounds.width / preview.bounds.width,
+                                          y: cellImageView.bounds.height / preview.bounds.height)
 
-        // Create a transform from the original icon to our preview
-        let sourceRect = cellImageView.convert(cellImageView.bounds, to: view)
-        let transform = CGAffineTransform.transformRect(from: preview.frame, toRect: sourceRect)
+        // Create a preview target with the cell image view as a container. The menu animation will animate
+        // the preview from the center and transform given here, to its final position and identity
+        // (determined by the system).
+        let targetCenter = CGPoint(x: cellImageView.bounds.midX, y: cellImageView.bounds.midY)
+        let target = UIPreviewTarget(container: cellImageView, center: targetCenter, transform: transform)
 
-        // Create a target with a center at the view center, and the transform for the animation.
-        // The menu animation will animate the preview from this transform to its identity.
-        let target = UIPreviewTarget(container: view, center: currentTableViewCenter, transform: transform)
+        // Create a custom shape for our preview, since we want a smaller corner radius than default
+        let visiblePath = UIBezierPath(roundedRect: preview.bounds, cornerRadius: 4)
+
+        // Configure our parameters
+        let parameters = UIPreviewParameters()
+        parameters.visiblePath = visiblePath
 
         // Return the custom targeted preview
-        return UITargetedPreview(view: preview, parameters: UIPreviewParameters(), target: target)
+        return UITargetedPreview(view: preview, parameters: parameters, target: target)
     }
 
     override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
@@ -166,15 +173,8 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
 
-        // Since we're not showing a view controller when the preview is tapped, we should set the animator commit style to "dismiss" instead of "pop"
+        // Since we're not showing a view controller when the preview is tapped,
+        // we set the animator commit style to "dismiss" instead of "pop"
         animator.preferredCommitStyle = .dismiss
-    }
-}
-
-private extension CGAffineTransform {
-    static func transformRect(from source: CGRect, toRect destination: CGRect) -> CGAffineTransform {
-        return CGAffineTransform.identity
-            .translatedBy(x: destination.midX - source.midX, y: destination.midY - source.midY)
-            .scaledBy(x: destination.width / source.width, y: destination.height / source.height)
     }
 }
