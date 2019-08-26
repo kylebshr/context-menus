@@ -120,7 +120,10 @@ class TargetedPreviewViewController: UITableViewController, ContextMenuDemo {
     }
 
     // Since we need to create the same preview for highlighting and dismissing, we'll put it in a utility method
-    private func makeTargetedPreview(for identifier: String) -> UITargetedPreview? {
+    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+
+        // Ensure we can get the expected identifier
+        guard let identifier = configuration.identifier as? String else { return nil }
 
         // Get the current index of the identifier
         guard let row = Fixtures.cloudSymbols.firstIndex(of: identifier) else { return nil }
@@ -158,6 +161,8 @@ class TargetedPreviewViewController: UITableViewController, ContextMenuDemo {
      identifier so that we can tell which item is being
      previewed in `previewForHighlightingContextMenuWithConfiguration`
      & `previewForDismissingContextMenuWithConfiguration`.
+     Since they create their preview the same way, I've put
+     the implementation into a helper method above.
 
      It's best not to pass the index path as your identifier,
      as the table view data could change while a menu is open.
@@ -180,21 +185,11 @@ class TargetedPreviewViewController: UITableViewController, ContextMenuDemo {
     }
 
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-
-        // Ensure we can get the expected identifier
-        guard let identifier = configuration.identifier as? String else { return nil }
-
-        // Make and return the preview for that identifier
-        return makeTargetedPreview(for: identifier)
+        return makeTargetedPreview(for: configuration)
     }
 
     override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-
-        // Ensure we can get the expected identifier
-        guard let identifier = configuration.identifier as? String else { return nil }
-
-        // Make and return the preview for that identifier
-        return makeTargetedPreview(for: identifier)
+        return makeTargetedPreview(for: configuration)
     }
 
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
