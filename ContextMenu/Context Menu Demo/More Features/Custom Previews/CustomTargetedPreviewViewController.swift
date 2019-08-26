@@ -56,7 +56,7 @@ private class PreviewView: UIView {
     }
 }
 
-class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo {
+class CustomTargetedPreviewViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
 

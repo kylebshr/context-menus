@@ -102,7 +102,7 @@ private class IconPreviewViewController: UIViewController {
     }
 }
 
-class TargetedPreviewTableViewController: UITableViewController, ContextMenuDemo {
+class TargetedPreviewViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
 
