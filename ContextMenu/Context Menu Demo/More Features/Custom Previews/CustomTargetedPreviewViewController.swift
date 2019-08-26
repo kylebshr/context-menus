@@ -66,14 +66,6 @@ class CustomTargetedPreviewViewController: UITableViewController, ContextMenuDem
 
     private let identifier = "identifier"
 
-    /// Since our view is a table view, `view.center` (relative to the frame) isn't always the center of the view.
-    /// Another solution would be to use the app window as the container, but that seems more fragile.
-    private var currentTableViewCenter: CGPoint {
-        var center = tableView.center
-        center.y += tableView.contentOffset.y
-        return center
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
