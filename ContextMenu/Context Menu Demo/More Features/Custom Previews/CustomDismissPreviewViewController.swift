@@ -106,7 +106,7 @@ class CustomDismissPreviewViewController: UITableViewController, ContextMenuDemo
      from our cell nicely.
 
      In this case, I think it looks best to have our dismiss
-     preview be the cell icon preview itself.
+     preview be the cell icon view itself.
 
      */
 
