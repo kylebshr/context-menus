@@ -63,7 +63,7 @@ class VCTargetedPreviewViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
 
-    static var title: String { return "UITargetedPreview (Custom Preview)" }
+    static var title: String { return "UITargetedPreview with Preview Provider" }
 
     // MARK: CustomPreviewTableViewController
 

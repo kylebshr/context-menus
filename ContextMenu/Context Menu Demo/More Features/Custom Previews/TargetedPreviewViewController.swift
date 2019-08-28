@@ -106,7 +106,7 @@ class TargetedPreviewViewController: UITableViewController, ContextMenuDemo {
 
     // MARK: ContextMenuDemo
 
-    static var title: String { return "UITargetedPreview (Existing View)" }
+    static var title: String { return "UITargetedPreview" }
 
     // MARK: CustomPreviewTableViewController
 
