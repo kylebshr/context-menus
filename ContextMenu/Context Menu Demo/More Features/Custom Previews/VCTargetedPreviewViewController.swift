@@ -88,7 +88,7 @@ class VCTargetedPreviewViewController: UITableViewController, ContextMenuDemo {
         // Get the image view in order to create a transform from its frame for our animation
         guard let cellImageView = tableView.cellForRow(at: .init(row: row, section: 0))?.imageView else { return nil }
 
-        // Create a custom shape for our preview, since we want a smaller corner radius than default
+        // Create a custom shape for our highlight/dismissal preview
         let visiblePath = UIBezierPath(roundedRect: cellImageView.bounds, cornerRadius: 3)
 
         // Configure our parameters
