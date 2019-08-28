@@ -28,7 +28,7 @@ class CatalogViewController: UITableViewController {
             VCPreviewSingleViewController.self,
             VCPreviewCollectionViewController.self,
             TargetedPreviewViewController.self,
-            CustomTargetedPreviewViewController.self,
+            VCTargetedPreviewViewController.self,
         ]),
     ]
 

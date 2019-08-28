@@ -17,7 +17,7 @@
 		2772A8D3230CA8E60017442F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8D2230CA8E60017442F /* CollectionViewController.swift */; };
 		2773BA33230DB99300D08658 /* VCPreviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2773BA32230DB99300D08658 /* VCPreviewCollectionViewController.swift */; };
 		2773BA35230DBB2B00D08658 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2773BA34230DBB2B00D08658 /* Fixtures.swift */; };
-		2773BA37230DBC2E00D08658 /* CustomTargetedPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2773BA36230DBC2E00D08658 /* CustomTargetedPreviewViewController.swift */; };
+		2773BA37230DBC2E00D08658 /* VCTargetedPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2773BA36230DBC2E00D08658 /* VCTargetedPreviewViewController.swift */; };
 		27C8E10A230CEEF30047E4EB /* IndexPath+NSIndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */; };
 		27C8E10C230CF4550047E4EB /* VCPreviewSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8E10B230CF4550047E4EB /* VCPreviewSingleViewController.swift */; };
 		27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091F8230CE7D800C5B2FF /* TableViewController.swift */; };
@@ -39,7 +39,7 @@
 		2772A8D2230CA8E60017442F /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		2773BA32230DB99300D08658 /* VCPreviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreviewCollectionViewController.swift; sourceTree = "<group>"; };
 		2773BA34230DBB2B00D08658 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
-		2773BA36230DBC2E00D08658 /* CustomTargetedPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetedPreviewViewController.swift; sourceTree = "<group>"; };
+		2773BA36230DBC2E00D08658 /* VCTargetedPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTargetedPreviewViewController.swift; sourceTree = "<group>"; };
 		27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+NSIndexPath.swift"; sourceTree = "<group>"; };
 		27C8E10B230CF4550047E4EB /* VCPreviewSingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreviewSingleViewController.swift; sourceTree = "<group>"; };
 		27D091F8230CE7D800C5B2FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 				27C8E10B230CF4550047E4EB /* VCPreviewSingleViewController.swift */,
 				2773BA32230DB99300D08658 /* VCPreviewCollectionViewController.swift */,
 				27D09200230CEC5D00C5B2FF /* TargetedPreviewViewController.swift */,
-				2773BA36230DBC2E00D08658 /* CustomTargetedPreviewViewController.swift */,
+				2773BA36230DBC2E00D08658 /* VCTargetedPreviewViewController.swift */,
 			);
 			path = "Custom Previews";
 			sourceTree = "<group>";
@@ -241,7 +241,7 @@
 				2772A8D1230CA7970017442F /* ContextMenuDemo.swift in Sources */,
 				2773BA35230DBB2B00D08658 /* Fixtures.swift in Sources */,
 				2772A8BA230CA2140017442F /* CatalogViewController.swift in Sources */,
-				2773BA37230DBC2E00D08658 /* CustomTargetedPreviewViewController.swift in Sources */,
+				2773BA37230DBC2E00D08658 /* VCTargetedPreviewViewController.swift in Sources */,
 				27D091FD230CEAC100C5B2FF /* SubmenuViewController.swift in Sources */,
 				2773BA33230DB99300D08658 /* VCPreviewCollectionViewController.swift in Sources */,
 				27D091FF230CEB9600C5B2FF /* InlineSubmenuViewController.swift in Sources */,
