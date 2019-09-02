@@ -1,10 +1,38 @@
 import UIKit
 
+private class TextPreviewViewController: UIViewController {
+    private let label = UILabel()
+
+    init(width: CGFloat, text: String) {
+        super.init(nibName: nil, bundle: nil)
+
+        label.text = text
+        label.numberOfLines = 0
+        label.font = .preferredFont(forTextStyle: .body)
+        view.addSubview(label)
+
+        let targetSize = CGSize(width: width, height: UIView.layoutFittingCompressedSize.height)
+        let size = label.systemLayoutSizeFitting(targetSize)
+        preferredContentSize = size
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        label.frame = view.bounds
+    }
+}
+
 class SuggestedActionsViewController: UIViewController, ContextMenuDemo {
     
     // MARK: ContextMenuDemo
 
     static var title: String { return "Suggested Actions" }
+
+    // MARK: SuggestedActionsViewController
 
     private let textView = UITextView()
 
@@ -12,41 +40,107 @@ class SuggestedActionsViewController: UIViewController, ContextMenuDemo {
         super.viewDidLoad()
 
         navigationItem.title = Self.title
-
         view.backgroundColor = .white
-        textView.frame = CGRect(origin: .zero, size: .init(width: 100, height: 100))
-        textView.backgroundColor = .secondarySystemBackground
 
         let interaction = UIContextMenuInteraction(delegate: self)
         textView.addInteraction(interaction)
 
+        textView.font = .preferredFont(forTextStyle: .body)
+        textView.textContainerInset = .init(top: 15, left: 10, bottom: 15, right: 10)
+        textView.text = "This is a demo of suggested actions. Select some text, then open a context menu."
         view.addSubview(textView)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        textView.center = view.center
+        textView.frame = view.bounds
+    }
+
+    // This method creates a text view that copies our real text view in appearance
+    // - however it only shows the selected text.
+    private func makeTextViewPreview() -> UIView {
+        let preview = UITextView()
+
+        let attributedText = NSMutableAttributedString(string: textView.text, attributes: [
+            .font: textView.font!,
+            .foregroundColor: UIColor.clear,
+        ])
+
+        attributedText.addAttributes([
+            .foregroundColor: textView.textColor!
+        ], range: textView.selectedRange)
+
+        preview.attributedText = attributedText
+        preview.frame = textView.bounds
+        preview.textContainerInset = textView.textContainerInset
+        preview.isUserInteractionEnabled = false
+
+        return preview
+    }
+
+    // This method creates a UITargetedPreview for our selected text
+    private func makeMenuPreview() -> UITargetedPreview? {
+
+        // Check that we can get the selected text range
+        guard let range = textView.selectedTextRange else {
+            return nil
+        }
+
+        // UIPreviewParameters has a handy method that takes an array of text line rects and creates
+        // parameters with a visible path containing those rects. However, that array is an array
+        // of NSValue, so the docs say to "wrap each CGRect in an NSValue object."
+        let selectionRects = textView.selectionRects(for: range).map { NSValue(cgRect: $0.rect) }
+
+        // Create the parameters using our selected text line rects
+        let parameters = UIPreviewParameters(textLineRects: selectionRects)
+
+        // We need to ensure a visiblePath was created, as we need its center
+        guard let visiblePath = parameters.visiblePath else {
+            return nil
+        }
+
+        // When using a preview not in the view hierarchy, we need to specify a container view
+        // and position by creating a UIPreviewTarget. In this case, we'll use our text view
+        // and the center of our visible path.
+        let target = UIPreviewTarget(container: textView, center: visiblePath.bounds.center)
+
+        // Return a targeted preview using the parameters and target
+        return UITargetedPreview(view: makeTextViewPreview(), parameters: parameters, target: target)
     }
 }
 
 extension SuggestedActionsViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
 
-            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in }
-            let rename = UIAction(title: "Rename", image: UIImage(systemName: "square.and.pencil")) { action in }
-
-            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
-            let deleteConfirmation = UIAction(title: "Delete", image: UIImage(systemName: "checkmark"), attributes: .destructive) { action in }
-
-            // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])
-
-            // The edit menu adds delete as a child, just like an action...
-            let edit = UIMenu(title: "Edit...", children: [rename, delete])
-
-            // ...then we add edit as a child of the main menu.
-            return UIMenu(title: "", children: [share, edit] + suggestedActions)
+        // We'll only create a context menu if there's some selected text
+        guard let range = textView.selectedTextRange, let text = textView.text(in: range) else {
+            return nil
         }
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
+
+            // Create your own actions
+            let myCustomAction = UIAction(title: "Totally custom action") { _ in
+                print("Selected custom action for selected text '\(text)'")
+            }
+
+            // Create a menu consisting of your own actions and the systems suggested actions
+            return UIMenu(title: "", children: [myCustomAction] + suggestedActions)
+        })
+    }
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeMenuPreview()
+    }
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForDismissingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeMenuPreview()
+    }
+}
+
+private extension CGRect {
+    // Computes the center of the receiver
+    var center: CGPoint {
+        return CGPoint(x: width / 2 + origin.x, y: height / 2 + origin.y)
     }
 }

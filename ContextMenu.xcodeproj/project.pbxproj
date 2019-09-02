@@ -137,9 +137,9 @@
 		27D091FB230CEAA000C5B2FF /* More Features */ = {
 			isa = PBXGroup;
 			children = (
-				27094A51231D6ECD00EC3FA7 /* Suggested Actions */,
 				27D09202230CEC6600C5B2FF /* Submenus */,
 				27D09203230CEC8700C5B2FF /* Custom Previews */,
+				27094A51231D6ECD00EC3FA7 /* Suggested Actions */,
 			);
 			path = "More Features";
 			sourceTree = "<group>";
