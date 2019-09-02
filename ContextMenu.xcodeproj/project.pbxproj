@@ -18,7 +18,6 @@
 		2773BA33230DB99300D08658 /* VCPreviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2773BA32230DB99300D08658 /* VCPreviewCollectionViewController.swift */; };
 		2773BA35230DBB2B00D08658 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2773BA34230DBB2B00D08658 /* Fixtures.swift */; };
 		2773BA37230DBC2E00D08658 /* VCTargetedPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2773BA36230DBC2E00D08658 /* VCTargetedPreviewViewController.swift */; };
-		27C8E10A230CEEF30047E4EB /* IndexPath+NSIndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */; };
 		27C8E10C230CF4550047E4EB /* VCPreviewSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C8E10B230CF4550047E4EB /* VCPreviewSingleViewController.swift */; };
 		27D091F9230CE7D800C5B2FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091F8230CE7D800C5B2FF /* TableViewController.swift */; };
 		27D091FD230CEAC100C5B2FF /* SubmenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D091FC230CEAC100C5B2FF /* SubmenuViewController.swift */; };
@@ -40,7 +39,6 @@
 		2773BA32230DB99300D08658 /* VCPreviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreviewCollectionViewController.swift; sourceTree = "<group>"; };
 		2773BA34230DBB2B00D08658 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		2773BA36230DBC2E00D08658 /* VCTargetedPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTargetedPreviewViewController.swift; sourceTree = "<group>"; };
-		27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+NSIndexPath.swift"; sourceTree = "<group>"; };
 		27C8E10B230CF4550047E4EB /* VCPreviewSingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreviewSingleViewController.swift; sourceTree = "<group>"; };
 		27D091F8230CE7D800C5B2FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		27D091FC230CEAC100C5B2FF /* SubmenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmenuViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 			children = (
 				2772A8C9230CA2DA0017442F /* Application */,
 				2772A8CA230CA2E40017442F /* Context Menu Demo */,
-				27C8E108230CEEE10047E4EB /* Utilities */,
 				2772A8CB230CA2EF0017442F /* Assets */,
 			);
 			path = ContextMenu;
@@ -115,14 +112,6 @@
 				2772A8C3230CA2150017442F /* Info.plist */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		27C8E108230CEEE10047E4EB /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				27C8E109230CEEF30047E4EB /* IndexPath+NSIndexPath.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		27D091FA230CEA4100C5B2FF /* Basic Menus */ = {
@@ -245,7 +234,6 @@
 				27D091FD230CEAC100C5B2FF /* SubmenuViewController.swift in Sources */,
 				2773BA33230DB99300D08658 /* VCPreviewCollectionViewController.swift in Sources */,
 				27D091FF230CEB9600C5B2FF /* InlineSubmenuViewController.swift in Sources */,
-				27C8E10A230CEEF30047E4EB /* IndexPath+NSIndexPath.swift in Sources */,
 				2772A8B6230CA2140017442F /* AppDelegate.swift in Sources */,
 				2772A8B8230CA2140017442F /* SceneDelegate.swift in Sources */,
 				2772A8CF230CA3700017442F /* SingleViewController.swift in Sources */,
