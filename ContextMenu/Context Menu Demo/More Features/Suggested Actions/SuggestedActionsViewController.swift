@@ -43,6 +43,8 @@ class SuggestedActionsViewController: UIViewController, ContextMenuDemo {
 
     // MARK: SuggestedActionsViewController
 
+    private weak var previewView: UIView?
+
     private let textView = UITextView()
 
     override func viewDidLoad() {
@@ -83,6 +85,8 @@ class SuggestedActionsViewController: UIViewController, ContextMenuDemo {
         preview.frame = textView.bounds
         preview.textContainerInset = textView.textContainerInset
         preview.isUserInteractionEnabled = false
+
+        previewView = preview
 
         return preview
     }
@@ -144,6 +148,12 @@ extension SuggestedActionsViewController: UIContextMenuInteractionDelegate {
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForDismissingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return makeMenuPreview()
+    }
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        animator?.addAnimations { [weak self] in
+            self?.previewView?.alpha = 0
+        }
     }
 }
 
