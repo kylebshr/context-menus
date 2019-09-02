@@ -23,12 +23,14 @@ class CatalogViewController: UITableViewController {
             SubmenuViewController.self,
             InlineSubmenuViewController.self,
         ]),
-
         ("Custom Previews", [
             VCPreviewSingleViewController.self,
             VCPreviewCollectionViewController.self,
             TargetedPreviewViewController.self,
             VCTargetedPreviewViewController.self,
+        ]),
+        ("Suggested Actions", [
+            SuggestedActionsViewController.self,
         ]),
     ]
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27094A53231D6EF300EC3FA7 /* SuggestedActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27094A52231D6EF300EC3FA7 /* SuggestedActionsViewController.swift */; };
 		2772A8B6230CA2140017442F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8B5230CA2140017442F /* AppDelegate.swift */; };
 		2772A8B8230CA2140017442F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8B7230CA2140017442F /* SceneDelegate.swift */; };
 		2772A8BA230CA2140017442F /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772A8B9230CA2140017442F /* CatalogViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27094A52231D6EF300EC3FA7 /* SuggestedActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedActionsViewController.swift; sourceTree = "<group>"; };
 		2772A8B2230CA2140017442F /* ContextMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContextMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2772A8B5230CA2140017442F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2772A8B7230CA2140017442F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27094A51231D6ECD00EC3FA7 /* Suggested Actions */ = {
+			isa = PBXGroup;
+			children = (
+				27094A52231D6EF300EC3FA7 /* SuggestedActionsViewController.swift */,
+			);
+			path = "Suggested Actions";
+			sourceTree = "<group>";
+		};
 		2772A8A9230CA2140017442F = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +137,7 @@
 		27D091FB230CEAA000C5B2FF /* More Features */ = {
 			isa = PBXGroup;
 			children = (
+				27094A51231D6ECD00EC3FA7 /* Suggested Actions */,
 				27D09202230CEC6600C5B2FF /* Submenus */,
 				27D09203230CEC8700C5B2FF /* Custom Previews */,
 			);
@@ -237,6 +248,7 @@
 				2772A8B6230CA2140017442F /* AppDelegate.swift in Sources */,
 				2772A8B8230CA2140017442F /* SceneDelegate.swift in Sources */,
 				2772A8CF230CA3700017442F /* SingleViewController.swift in Sources */,
+				27094A53231D6EF300EC3FA7 /* SuggestedActionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
