@@ -122,7 +122,7 @@ extension SuggestedActionsViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
 
         // We'll only create a context menu if there's some selected text
-        guard let range = textView.selectedTextRange, let text = textView.text(in: range) else {
+        guard let range = textView.selectedTextRange, let text = textView.text(in: range), !text.isEmpty else {
             return nil
         }
 
