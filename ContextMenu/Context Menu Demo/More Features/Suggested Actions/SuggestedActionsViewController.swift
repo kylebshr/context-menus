@@ -9,32 +9,6 @@
 
 import UIKit
 
-private class TextPreviewViewController: UIViewController {
-    private let label = UILabel()
-
-    init(width: CGFloat, text: String) {
-        super.init(nibName: nil, bundle: nil)
-
-        label.text = text
-        label.numberOfLines = 0
-        label.font = .preferredFont(forTextStyle: .body)
-        view.addSubview(label)
-
-        let targetSize = CGSize(width: width, height: UIView.layoutFittingCompressedSize.height)
-        let size = label.systemLayoutSizeFitting(targetSize)
-        preferredContentSize = size
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        label.frame = view.bounds
-    }
-}
-
 class SuggestedActionsViewController: UIViewController, ContextMenuDemo {
     
     // MARK: ContextMenuDemo
